@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hyperia Network</title>
+    <style>
+      body {
+        background-color: #121212;
+        color: #ffffff;
+        font-family: monospace;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      #ascii-art {
+        white-space: pre;
+        text-align: center;
+      }
+      #loading {
+        margin-top: 20px;
+      }
+      #coming-soon {
+        display: none;
+        margin-top: 20px;
+      }
+      #image-container {
+        position: absolute;
+        top: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        opacity: 1;
+        transition: opacity 2s;
+      }
+      #image-container img {
+        max-width: 100%;
+        height: auto;
+      }
+      .join-us {
+        display: flex;
+        justify-content: center;
+      }
+      .social-link {
+        color: #ffffff;
+        text-decoration: none;
+      }
+      .blinking {
+        animation: blink 1s step-start infinite;
+      }
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="image-container">
+      <img src="logo.png" width="500px" alt="HyperiaNetwork" />
+    </div>
+
+    <div id="ascii-art">
+      <div id="progress-bar"></div>
+      <div id="error-message"></div>
+    </div>
+    <div id="coming-soon">
+      <div class="join-us">Join Us:</div>
+      <span class="blinking">></span
+      ><a class="social-link" href="https://t.me/HyperiaNetwork" target="_blank"
+        >Telegram</a
+      >
+      <span class="blinking">></span
+      ><a
+        class="social-link"
+        href="https://x.com/Hyperia_Network"
+        target="_blank"
+        >Twitter</a
+      >
+      <span class="blinking">></span
+      ><a
+        class="social-link"
+        href="https://discord.hyperia.network"
+        target="_blank"
+        >Discord</a
+      >
+    </div>
+
+    <script>
+      const progressBar = document.getElementById("progress-bar");
+      const errorMessage = document.getElementById("error-message");
+      const comingSoon = document.getElementById("coming-soon");
+      const imageContainer = document.getElementById("image-container");
+      let progress = 0;
+      const totalProgress = 100;
+      const maxProgress = 76;
+
+      const interval = setInterval(() => {
+        if (progress < maxProgress) {
+          progress++;
+          progressBar.innerText = `[ ${"=".repeat(progress)}${" ".repeat(
+            totalProgress - progress
+          )} ] ${progress}%`;
+        } else {
+          clearInterval(interval);
+          errorMessage.innerText = "Error: Network still in development.";
+          setTimeout(() => {
+            comingSoon.style.display = "block";
+          }, 1000);
+        }
+      }, 50);
+    </script>
+  </body>
+</html>
